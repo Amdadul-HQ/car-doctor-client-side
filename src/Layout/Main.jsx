@@ -5,7 +5,7 @@ import Home from '../Pages/Home/Home';
 const Main = () => {
     return (
         <>
-        <header>
+        <header className='max-w-screen-xl mx-auto'>
             <Header/>
         </header>
         <main>
