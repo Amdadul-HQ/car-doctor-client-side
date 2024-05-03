@@ -1,6 +1,7 @@
 
 import Header from '../Shared/Header/Header';
 import Home from '../Pages/Home/Home';
+import { Outlet } from 'react-router-dom';
 
 const Main = () => {
     return (
@@ -9,7 +10,7 @@ const Main = () => {
             <Header/>
         </header>
         <main>
-            <Home/>
+            <Outlet/>
         </main>
             
         </>

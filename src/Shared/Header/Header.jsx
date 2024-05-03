@@ -2,7 +2,28 @@ import { NavLink } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { GoSearch } from "react-icons/go";
+import { useContext } from 'react';
+import { AuthContext } from '../../Context/ContextComponent';
+import Swal from 'sweetalert2';
 const Header = () => {
+    const{user,logout} = useContext(AuthContext)
+    const handleLogOut = () => {
+        logout()
+        .then(()=> {
+            Swal.fire({
+                icon: "success",
+                title: "Good Job",
+                text: "User Log Out Successful!",
+            })  
+        })
+        .catch(error => {
+            Swal.fire({
+                icon: "error",
+                title: "Opps",
+                text: "User Log Out Failed!",
+            })  
+        })
+    }
     return (
         <nav className='my-12 flex justify-between items-center'>
             <div>
@@ -15,6 +36,10 @@ const Header = () => {
                     <NavLink>Services</NavLink>
                     <NavLink>Blog</NavLink>
                     <NavLink>Contact</NavLink>
+                    {
+                        user ? <button onClick={handleLogOut}>Log Out</button> : <NavLink to='/login'>Log In</NavLink>
+                    }
+                    <NavLink to='/signup'>Sign Up</NavLink>
                 </ul>
             </div>
             <div className='flex items-center gap-x-3'>

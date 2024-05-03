@@ -1,14 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 
 const Service = () => {
     const {data} = useQuery({
         queryKey:['service'],
         queryFn:async ()=> {
-             const res = await fetch('/service.json')
+             const res = await fetch('http://localhost:5000/service')
              return res.json()
         }
     })
+
     return (
         <section className='my-20 max-w-screen-xl mx-auto'>
            <div className="space-y-4">
@@ -18,12 +21,12 @@ const Service = () => {
            </div>
            <div className="grid grid-cols-3 gap-6">
                 {
-                    data && data.map(item => <div key={item.id} className="border p-6 rounded space-y-3">
+                    data && data.map(item => <div key={item._id} className="border p-6 rounded-md space-y-8 hover:scale-105 transition-all duration-300">
                         <img className="h-[208px] w-full rounded-lg" src={item.img} alt="" />
                         <h3 className="text-bigText text-2xl font-bold">{item.title}</h3>
-                        <div>
-                        <p className="text-orange text-xl font-semibold">Price: ${item.price}</p>
-                        <button></button>
+                        <div className="flex justify-between items-center">
+                            <p className="text-orange text-xl font-semibold">Price: ${item.price}</p>
+                            <Link to={`/service/details/${item._id}`}><button className="text-orange p-6 border scale-75 hover:scale-100 hover:text-white hover:bg-orange transition duration-300 rounded-full"><FaArrowRightLong /></button></Link>
                         </div>
                     </div>)
                 }
