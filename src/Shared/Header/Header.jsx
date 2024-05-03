@@ -16,7 +16,7 @@ const Header = () => {
                 text: "User Log Out Successful!",
             })  
         })
-        .catch(error => {
+        .catch(() => {
             Swal.fire({
                 icon: "error",
                 title: "Opps",

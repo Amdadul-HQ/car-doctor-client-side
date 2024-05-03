@@ -26,7 +26,7 @@ const Service = () => {
                         <h3 className="text-bigText text-2xl font-bold">{item.title}</h3>
                         <div className="flex justify-between items-center">
                             <p className="text-orange text-xl font-semibold">Price: ${item.price}</p>
-                            <Link to={`/service/details/${item._id}`}><button className="text-orange p-6 border scale-75 hover:scale-100 hover:text-white hover:bg-orange transition duration-300 rounded-full"><FaArrowRightLong /></button></Link>
+                            <Link to={`/checkout/${item._id}`}><button className="text-orange p-6 border scale-75 hover:scale-100 hover:text-white hover:bg-orange transition duration-300 rounded-full"><FaArrowRightLong /></button></Link>
                         </div>
                     </div>)
                 }
