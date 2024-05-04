@@ -1,6 +1,5 @@
 
 import Header from '../Shared/Header/Header';
-import Home from '../Pages/Home/Home';
 import { Outlet } from 'react-router-dom';
 
 const Main = () => {

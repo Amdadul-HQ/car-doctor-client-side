@@ -33,11 +33,12 @@ const Header = () => {
                 <ul className='text-smText text-lg font-semibold space-x-10'>
                     <NavLink>Home</NavLink>
                     <NavLink>About</NavLink>
-                    <NavLink>Services</NavLink>
-                    <NavLink>Blog</NavLink>
-                    <NavLink>Contact</NavLink>
+
                     {
-                        user ? <button onClick={handleLogOut}>Log Out</button> : <NavLink to='/login'>Log In</NavLink>
+                        user ? <>
+                        <NavLink to='/booking'>My Booking</NavLink>
+                        <button onClick={handleLogOut}>Log Out</button>
+                        </> : <NavLink to='/login'>Log In</NavLink>
                     }
                     <NavLink to='/signup'>Sign Up</NavLink>
                 </ul>

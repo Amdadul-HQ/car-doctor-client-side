@@ -2,10 +2,13 @@ import { useLoaderData } from 'react-router-dom';
 import bg from '../../assets/images/checkout/checkout.png'
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useContext } from 'react';
+import { AuthContext } from '../../Context/ContextComponent';
 
 const CheckOut = () => {
     const service = useLoaderData()
-    const {title,price,service_id} = service;
+    const {user} = useContext(AuthContext)
+    const {title,price,service_id,img} = service;
     const handleOrder = e => {
         e.preventDefault()
 
@@ -14,11 +17,11 @@ const CheckOut = () => {
         const lastName = form.lastName.value;
         const fullName = firstName+' '+lastName;
         const phone = form.phone.value;
-        const email = form.email.value;
+        const email = user?.email;
         const message = form.message.value;
 
         const order = {
-            fullName,phone,email,message,title,price,service_id
+            fullName,phone,email,message,title,price,service_id,img
         }
 
         axios.post('http://localhost:5000/booking',order)
@@ -70,7 +73,7 @@ const CheckOut = () => {
                     <div className='mt-4 space-y-2 w-1/2'>
                         <label className='text-[#444] text-lg font-semibold' htmlFor='email'>Your Email</label>
                         <br />
-                        <input  type="email" name='email' placeholder="Your Email" id='email' className="input py-4 input-bordered w-full" required />
+                        <input  type="email" defaultValue={user?.email} name='email' placeholder="Your Email" id='email' className="input py-4 input-bordered w-full" required />
                     </div>
                     </div>
                     <div>
